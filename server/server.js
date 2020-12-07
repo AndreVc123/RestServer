@@ -7,12 +7,15 @@ const app = express();
 
 const bodyParser = require('body-parser');
 
+// Parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({extended: false}));
 
+// Parse application/json
 app.use(bodyParser.json());
 
+// Configuración global de rutas
+app.use( require('./routes/index'));
 
-app.use( require('./routes/usuario'));
 
 mongoose.connect(process.env.URLDB, {useNewUrlParser: true, useCreateIndex: true},(err)=>{
         if(err) throw err;
